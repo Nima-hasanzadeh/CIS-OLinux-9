@@ -1,4 +1,4 @@
-# CIS Automated Hardening and Auditing Script for Oracle Linux-7
+# CIS Automated Hardening and Auditing Script for Oracle Linux-9
 
 
 
