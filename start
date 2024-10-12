@@ -1,0 +1,64 @@
+#!/bin/bash
+
+
+
+#Author: Nima.H 
+#OS Support : Oracle Linux 9 (It may be compatible with most Red Hat distributions)
+#Description: This script is for hardening and auditing Linux systems aligns to the CIS benchmarks.
+#I'm going to provide a starting point for  Linux admins to build a secure server which meets the CIS standards.
+#For more information please check : github.com/Nima-Hasanzadeh
+
+
+
+clear
+echo -e "\e[91m"
+cat <<EOF
+
+
+
+
+ ███████╗███████╗ ██████╗██╗   ██╗██████╗ ██╗████████╗██╗   ██╗    ████████╗███████╗ █████╗ ███╗N.H███╗
+ ██╔════╝██╔════╝██╔════╝██║   ██║██╔══██╗██║╚══██╔══╝╚██╗ ██╔╝    ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║
+ ███████╗█████╗  ██║     ██║   ██║██████╔╝██║   ██║    ╚████╔╝        ██║   █████╗  ███████║██╔████╔██║
+ ╚════██║██╔══╝  ██║     ██║   ██║██╔══██╗██║   ██║     ╚██╔╝         ██║   ██╔══╝  ██╔══██║██║╚██╔╝██║
+ ███████║███████╗╚██████╗╚██████╔╝██║  ██║██║   ██║      ██║          ██║   ███████╗██║  ██║██║ ╚═╝ ██║
+ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝   ╚═╝      ╚═╝          ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝
+ github.com/Nima-Hasanzadeh
+
+
+EOF
+echo -e "\e[49m"
+. /etc/os-release
+echo -e "You are running \e[43m\e[34m${PRETTY_NAME}\e[0m\n"
+
+
+
+if ! [ -x "$(command -v systemctl)" ]; then
+  echo "This script requires systemctl ."
+  kill $$
+fi
+
+chmod +rx ./Caliper.bash
+chmod +rx ./Pliers.bash
+
+echo "Select an option:"
+echo "1. Auditing by Caliper"
+echo "2. Hardening by Pliers"
+echo "3. Exit"
+
+read choice
+
+case $choice in
+  1)
+    ./Caliper.bash
+    ;;
+  2)
+    ./Pliers.bash
+    ;;
+  3)
+    kill $$
+    ;;
+  *)
+    echo "Invalid choice"
+    ;;
+esac
